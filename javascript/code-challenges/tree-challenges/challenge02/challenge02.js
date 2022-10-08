@@ -14,6 +14,8 @@ class Tree {
     this.root = root || null;
   }
 
+    // for testing only
+    
   preOrder() {
     let results = [];
     let traverse = (node) => {
