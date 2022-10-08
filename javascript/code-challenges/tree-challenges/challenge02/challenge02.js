@@ -1,6 +1,5 @@
 "use strict";
 
-// First we need to create a class for the node
 
 class Node {
   constructor(value) {
@@ -8,17 +7,15 @@ class Node {
     this.left = null;
     this.right = null;
   }
-  // we don't have to create methods for this challenge
 }
-
-// Now we need to create a class for the tree
 
 class Tree {
   constructor(root) {
     this.root = root || null;
   }
-  // we need to create pre order and in-order methods
-  // for testing only
+
+    // for testing only
+    
   preOrder() {
     let results = [];
     let traverse = (node) => {
@@ -46,6 +43,7 @@ class Tree {
   }
 }
 
+
 const createTree = (preOrder, inOrder) => {
   const construct = (preArray, inArray) => {
     if (preArray.length === 0) return null;
@@ -66,9 +64,12 @@ const createTree = (preOrder, inOrder) => {
   return tree;
 };
 
-let inputPreOrder = [3, 9, 20, 15, 7],
-  inputInOrder = [9, 3, 15, 20, 7]; // test
+const isSame = (array1, array2) => {
+  return JSON.stringify(array1.inOrder())==JSON.stringify(array2.inOrder());
+};
 
-console.log(createTree(inputPreOrder, inputInOrder).inOrder());
+let first = createTree([1,2,3], [2, 1, 3])
+let second = createTree([1,2,3], [2, 1, 3])
 
-module.exports = { Node, Tree, createTree };
+console.log(isSame(first, second))
+module.exports = {isSame, createTree}
