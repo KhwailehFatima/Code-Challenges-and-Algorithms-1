@@ -1,9 +1,9 @@
-// Write your test here
+"use strict";
 
 const { Node, Tree, createTree } = require('./challenge01.js');
 
 describe('Testing challenges', () => {
-    test('Challenge 1 It should return an array of the values in the tree required order', () => {
+    it('Challenge 1 It should return an array of the values in the tree required order', () => {
         let AutoCreate= createTree ([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])
 
         // to make sure it works fine, let's also create the tree manually
@@ -23,7 +23,7 @@ describe('Testing challenges', () => {
         expect(tree1.preOrder()).toStrictEqual(AutoCreate.preOrder());
         expect(tree1.inOrder()).toStrictEqual(AutoCreate.inOrder());
     });
-    test('Challenge 2 It should return an array of the values in the tree required order', () => {
+    it('Challenge 2 It should return an array of the values in the tree required order', () => {
         let root = new Node(-1);
         let AutoCreate= createTree ([-1], [-1])
 

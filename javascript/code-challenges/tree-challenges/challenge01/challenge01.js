@@ -1,4 +1,4 @@
-// Write here the code challenge solution
+"use strict";
 
 // First we need to create a class for the node
 
@@ -18,7 +18,7 @@ class Tree {
     this.root = root || null;
   }
   // we need to create pre order and in-order methods
-
+  // for testing only
   preOrder() {
     let results = [];
     let traverse = (node) => {
