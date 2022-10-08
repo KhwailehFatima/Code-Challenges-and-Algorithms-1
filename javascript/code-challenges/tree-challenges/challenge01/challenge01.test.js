@@ -1,9 +1,12 @@
 // Write your test here
 
-const { Node, Tree } = require('./challenge01.js');
+const { Node, Tree, createTree } = require('./challenge01.js');
 
 describe('Testing challenges', () => {
     test('Challenge 1 It should return an array of the values in the tree required order', () => {
+        let AutoCreate= createTree ([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])
+
+        // to make sure it works fine, let's also create the tree manually
         let root = new Node(3);
         let leftSubTree = new Node(9);
         let rightSubTree = new Node(20);
@@ -15,15 +18,18 @@ describe('Testing challenges', () => {
         rightSubTree.left = fifteen;
         rightSubTree.right = seven;
         let tree1 = new Tree(root);
-        expect(tree1.preOrder()).toStrictEqual([3, 9, 20, 15, 7]);
-        expect(tree1.inOrder()).toStrictEqual([9, 3, 15, 20, 7]);
+
+        // now lets check
+        expect(tree1.preOrder()).toStrictEqual(AutoCreate.preOrder());
+        expect(tree1.inOrder()).toStrictEqual(AutoCreate.inOrder());
     });
     test('Challenge 2 It should return an array of the values in the tree required order', () => {
         let root = new Node(-1);
-       
+        let AutoCreate= createTree ([-1], [-1])
+
         let tree1 = new Tree(root);
-        expect(tree1.preOrder()).toStrictEqual([-1]);
-        expect(tree1.inOrder()).toStrictEqual([-1]);
+        expect(tree1.preOrder()).toStrictEqual(AutoCreate.preOrder());
+        expect(tree1.inOrder()).toStrictEqual(AutoCreate.inOrder());
     });
 })
         

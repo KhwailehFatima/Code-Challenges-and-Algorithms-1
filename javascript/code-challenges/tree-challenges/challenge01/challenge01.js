@@ -46,36 +46,29 @@ class Tree {
   }
 }
 
-module.exports = { Node, Tree };
+const createTree = (preOrder, inOrder) => {
+  const construct = (preArray, inArray) => {
+    if (preArray.length === 0) return null;
+    let node = new Node(preArray[0]);
+    let nodeIdx = inArray.indexOf(preArray[0]);
+    node.left = construct(
+      preArray.slice(1, nodeIdx + 1),
+      inArray.slice(0, nodeIdx)
+    );
+    node.right = construct(
+      preArray.slice(nodeIdx + 1),
+      inArray.slice(nodeIdx + 1)
+    );
+    return node;
+  };
+  let root = construct(preOrder, inOrder);
+  let tree = new Tree(root);
+  return tree;
+};
 
-// Now we need to create a tree for each example
+let inputPreOrder = [3, 9, 20, 15, 7],
+  inputInOrder = [9, 3, 15, 20, 7]; // test
 
-// Example 1
-function tree1() {
-  let root = new Node(3);
-  let leftSubTree = new Node(9);
-  let rightSubTree = new Node(20);
-  let fifteen = new Node(15);
-  let seven = new Node(7);
+console.log(createTree(inputPreOrder, inputInOrder).inOrder());
 
-  root.left = leftSubTree;
-  root.right = rightSubTree;
-  rightSubTree.left = fifteen;
-  rightSubTree.right = seven;
-
-  let exampleTree1 = new Tree(root);
-  console.log("Example 1 preOrder", exampleTree1.preOrder());
-  console.log("Example 1 inOrder", exampleTree1.inOrder());
-  return exampleTree1;
-}
-
-// Example 2
-function tree2() {
-  let root = new Node(-1);
-  let exampleTree2 = new Tree(root);
-  console.log("Example 2 preOrder", exampleTree2.preOrder());
-  console.log("Example 2 inOrder", exampleTree2.inOrder());
-  return exampleTree2;
-}
-tree1();
-tree2();
+module.exports = { Node, Tree, createTree };
