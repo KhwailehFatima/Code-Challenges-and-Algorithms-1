@@ -33,8 +33,8 @@ class HashTableUsingArray {
   }
 
   set(key, value) {
-    if (!this.storage[key]) this.storage[key] = [key, []];
-    this.storage[key] = [key, [...this.storage[key][1], value]];
+    if (!this.storage[key]) this.storage[key] = [value];
+    this.storage[key] = [...this.storage[key], value];
   }
 
   checkSum(tree, num) {
@@ -43,15 +43,15 @@ class HashTableUsingArray {
         if (value !== value2) this.set(value, value2);
       });
     });
+    console.log(this.storage);
     return this.storage
-      .map((value) =>
-        this.storage[value[0]][1]
-          .map((value2) => value[0] + value2)
-          .includes(num)
+      .map((value, idx) =>
+        this.storage[idx]?.find((value2) => idx + value2 === num && idx !== value2)
       )
-      .includes(true);
+      .filter((value) => value).length?true:false;
   }
 }
+
 
 module.exports = { Node, Tree, HashTableUsingArray };
 
@@ -76,3 +76,25 @@ module.exports = { Node, Tree, HashTableUsingArray };
 //   }
 //   return false;
 // }
+
+// let one = new Node(1);
+// let two = new Node(2);
+// let three = new Node(3);
+// let four = new Node(4);
+// let five = new Node(5);
+// let six = new Node(6);
+// let seven = new Node(7);
+// let eight = new Node(8);
+
+// one.left = two;
+// one.right = three;
+// two.left = four;
+// two.right = five;
+// three.left = six;
+// three.right = seven;
+// four.left = eight;
+
+// let tree = new Tree(one);
+// let hashTable = new HashTableUsingArray();
+
+// console.log(hashTable.checkSum(tree, 16));
